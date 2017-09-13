@@ -55,8 +55,6 @@ if [ "$action" == 'create' ]
 		if ! [ -d $rootDir ]; then
 			### create the directory
 			mkdir $rootDir
-			### give permission to root dir
-			chmod 755 $rootDir
 			### write test file in the new domain dir
 			if ! echo "<?php echo phpinfo(); ?>" > $rootDir/phpinfo.php
 			then
@@ -100,12 +98,6 @@ if [ "$action" == 'create' ]
 			exit;
 		else
 			echo -e $"Host added to /etc/hosts file \n"
-		fi
-
-		if [ "$owner" == "" ]; then
-			chown -R $(whoami):$(whoami) $rootDir
-		else
-			chown -R $owner:$owner $rootDir
 		fi
 
 		### enable website
